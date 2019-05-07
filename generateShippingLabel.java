@@ -12,7 +12,7 @@ public class generateShippingLabel implements Runnable {
 			ShippingService shippingService = new ShippingService();
 	        ShippingLabel slabel = shippingService.getShippingLabel(order.getCustomerName(), order.getCustomerAddress(), order.getPoundsOfHoney());
 	        System.out.printf("%s%n", slabel);
-	        Thread.sleep(5000);
+	        Thread.sleep(3000);
 		} catch(InterruptedException e){}
 	}
 

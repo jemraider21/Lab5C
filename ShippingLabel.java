@@ -66,11 +66,11 @@ public class ShippingLabel {
     @Override
     public String toString() {
         return "ShippingLabel{\n" 
-        		+ "\n\ttrackingNumber=" + trackingNumber 
-        		+ "\n\trecipientName=" + recipientName 
-        		+ "\n\tdestinationAddress=" + destinationAddress 
-        		+ "\n\tweightInPounds=" + weightInPounds 
-        		+ "\n\tcostInCents=" + costInCents 
+        		+ "\n\tTracking Number: " + trackingNumber 
+        		+ "\n\tRecipient Name: " + recipientName 
+        		+ "\n\tDestination Address: " + destinationAddress 
+        		+ "\n\tWeight in Pounds: " + weightInPounds 
+                + "\n\tCost in Cents: " + costInCents
         		+ "\n}\n\n";
     }   
     

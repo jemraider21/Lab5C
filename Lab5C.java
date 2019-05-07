@@ -5,18 +5,17 @@
  */
 import java.util.Arrays;
 import java.util.List;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
+import java.util.concurrent.*;
 
 public class Lab5C {
 
 	//private static int total;
 
     public static void main(String[] args) {
-    	ExecutorService executor = Executors.newFixedThreadPool(5);
+        ExecutorService executor = Executors.newSingleThreadExecutor();
     	
     	// Create array of orders, then add them to a list
-    	Order order1 = new Order("Mark Quinn", "10901 Little Patuxent Parkway",50);
+    	//Order order1 = new Order("Mark Quinn", "10901 Little Patuxent Parkway",50);
         Order[] orders = {
         		new Order("Mark Quinn", "10901 Little Patuxent Parkway",50),
         		new Order("Barack Obama", "1600 Pennsylvania Ave", 60),
@@ -25,32 +24,25 @@ public class Lab5C {
         		new Order("Mahatma Gandhi", "415 Cedar Road", 54),
         		new Order("Leonardo da Vinci", "8 Indian Spring Ave.", 49)
         };
-        List<Order> listOfOrders = Arrays.asList(orders);
+        //List<Order> listOfOrders = Arrays.asList(orders);
         
         // Creating threads to be ran by the program
-        generateShippingLabel label1 = new generateShippingLabel(orders[0]);
-        generateShippingLabel label2 = new generateShippingLabel(orders[1]);
-        generateShippingLabel label3 = new generateShippingLabel(orders[2]);
-        generateShippingLabel label4 = new generateShippingLabel(orders[3]);
-        generateShippingLabel label5 = new generateShippingLabel(orders[4]);
-        generateShippingLabel label6 = new generateShippingLabel(orders[5]);
+        generateShippingLabel[] labels = {
+            new generateShippingLabel(orders[0]),
+            new generateShippingLabel(orders[1]),
+            new generateShippingLabel(orders[2]),
+            new generateShippingLabel(orders[3]),
+            new generateShippingLabel(orders[4]),
+            new generateShippingLabel(orders[5])
+        };
         
         // Execute the threads
-        System.out.println(executor.isShutdown());
-        executor.execute(label1);
-        executor.execute(label2);
-        executor.execute(label3);
-        executor.execute(label4);
-        executor.execute(label5);
-        executor.execute(label6);
-        
-        System.out.println(executor.isShutdown());
+        for(int i = 0; i < 6; i++){
+            executor.execute(labels[i]);
+            
+        }
         
         // Shutdown the threads and display the total
         executor.shutdown();
-        System.out.println(executor.isShutdown());
     }
-    
-    
-   
 }
